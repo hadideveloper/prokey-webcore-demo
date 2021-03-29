@@ -44,6 +44,10 @@ export function IsSegwitPath(path: Array<number> | any): boolean  {
     return Array.isArray(path) && path[0] === toHardened(49);
 };
 
+export function IsNativeSegwitPath(path: Array<number> | any): boolean  {
+    return Array.isArray(path) && path[0] === toHardened(84);
+};
+
 export const validatePath = (path: string | Array<number>, length: number = 0, base: boolean = false): Array<number> => {
     let valid: Array<number> = [];
     if (typeof path === 'string') {
@@ -156,7 +160,7 @@ export function GetOutputScriptType(path?: Array<number>): EnumOutputScriptType 
     }
 };
 
-export function GetListOfBipPath(coinBip44: number, account: number, numberOfAddress: number, isSegwit: boolean, isChange: boolean = false, startIndex: number = 0 ): Array<AddressModel>{
+export function GetListOfBipPath(coinBip44: number, account: number, numberOfAddress: number, isSegwit: boolean, isChange: boolean = false, startIndex: number = 0, isNativeSegwit = false ): Array<AddressModel>{
     let paths: Array<AddressModel> = new Array<AddressModel>();
     for(let i = 0; i<numberOfAddress; i++) {
 
@@ -164,7 +168,10 @@ export function GetListOfBipPath(coinBip44: number, account: number, numberOfAdd
         let pathStr = 'm';
         
         // purpose: Bip44 or 49
-        if(isSegwit) {
+        if(isNativeSegwit) {
+            pathStr += `/84'`;
+        }
+        else if(isSegwit) {
             pathStr += `/49'`;
         }
         else {
@@ -182,7 +189,7 @@ export function GetListOfBipPath(coinBip44: number, account: number, numberOfAdd
 
         let path: AddressModel = {
             path: [ 
-                0x80000000 + (isSegwit == true ? 49 : 44),
+                0x80000000 + (isNativeSegwit ? 84 : (isSegwit ? 49 : 44)),
                 0x80000000 + coinBip44,
                 0x80000000 + account,
                 (isChange) ? 1 : 0,

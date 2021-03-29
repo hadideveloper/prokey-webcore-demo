@@ -34,15 +34,8 @@ export interface BitcoinBaseCoinInfoModel {
     min_address_length: number,
     minfee_kb: number,
     segwit: boolean,
-    // signed_message_header: in Network
     slip44: number,
     support: ProkeySupport,
-    //xPubMagic: number,
-    //xPubMagicSegwitNative?: number,
-    //xPubMagicSegwit?: number,
-
-    // custom
-    //network: Network,
     is_bitcoin: boolean,
     min_fee: number,
     max_fee: number,
@@ -51,6 +44,7 @@ export interface BitcoinBaseCoinInfoModel {
     on_device: string,
     test?: boolean,
     tx_url: string,
+    bech32_prefix?: string,
 };
 
 export interface EthereumBaseCoinInfoModel {

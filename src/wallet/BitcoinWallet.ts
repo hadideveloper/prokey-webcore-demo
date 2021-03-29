@@ -20,7 +20,7 @@
 
 import * as WalletModel from '../models/BitcoinWalletModel';
 import * as GenericWalletModel from '../models/GenericWalletModel'
-import { CoinBaseType } from '../coins/CoinInfo';
+import { CoinBaseType, CoinInfo } from '../coins/CoinInfo';
 import { BitcoinBaseCoinInfoModel } from '../models/CoinInfoModel';
 import { Device } from '../device/Device'
 import * as PathUtil from '../utils/pathUtils';
@@ -45,6 +45,7 @@ var WAValidator = require('multicoin-address-validator');
 export class BitcoinWallet extends BaseWallet {
     private _bitcoinWallet!: WalletModel.BitcoinWalletModel 
     private _blockchain: BitcoinBlockchain;
+    private _isNativeSegwit = false;
 
     _TX_DEFAULT_INPUT_SIZE = 148;
     _TX_DEFAULT_OUTPUT_SIZE = 180;
@@ -55,11 +56,16 @@ export class BitcoinWallet extends BaseWallet {
      * @param device Prokey device instance
      * @param coinName Coin name, Check /data/ProkeyCoinsInfo.json
      */
-    constructor(device: Device, coinName: string) {
+    constructor(device: Device, coinName: string, isNativeSegwit?: boolean) {
         super(device, coinName, CoinBaseType.BitcoinBase);
 
+        const coinInfo = super.GetCoinInfo() as BitcoinBaseCoinInfoModel;
         // Initial Bitcoin Blockchain
-        this._blockchain = new BitcoinBlockchain(super.GetCoinInfo().shortcut);
+        this._blockchain = new BitcoinBlockchain(coinInfo.shortcut);
+
+        if(isNativeSegwit && coinInfo.segwit && coinInfo.bech32_prefix){
+            this._isNativeSegwit = true;
+        }
     }
 
     /**
@@ -198,7 +204,7 @@ export class BitcoinWallet extends BaseWallet {
 
         do {  
             // Makinging a list of paths
-            let paths = PathUtil.GetListOfBipPath(coinInfo.slip44, accountNumber, 20, coinInfo.segwit, false, startIndex);
+            let paths = PathUtil.GetListOfBipPath(coinInfo.slip44, accountNumber, 20, coinInfo.segwit, false, startIndex, this._isNativeSegwit);
             var justPaths = paths.map(a =>{
                 return a.path;
             });
@@ -587,14 +593,14 @@ export class BitcoinWallet extends BaseWallet {
             }
         }
 
-        // Seqwit & Overwintered transactions don't need previous hash
+        // Segwit & Overwintered transactions don't need previous hash
         if(coinInfo.segwit == false || isOverWintered == false) {
             //! Load previous transactions
             await this.LoadPrevTx(tx);
 
             MyConsole.Info("BitcoinWallet::GenerateTransaction->RefTx:", tx);
         }
-
+        
         //! Set the TX's outputs
         receivers.forEach(o => {
             let output: TransactionOutput = {
@@ -618,15 +624,19 @@ export class BitcoinWallet extends BaseWallet {
             changeIndex = i + 1;
         }
 
-        let changePaths = PathUtil.GetListOfBipPath(coinInfo.slip44, fromAccount, 1, coinInfo.segwit, true, changeIndex);
+        let changePaths = PathUtil.GetListOfBipPath(coinInfo.slip44, fromAccount, 1, coinInfo.segwit, true, changeIndex, this._isNativeSegwit);
         
         //! Add change - fee
         let change = utxoBal - totalSend - txFee;
 
+        //! For native segwit accounts, change address should be also native segwit,(bc1 address) and the script should be PAYTOWITNESS
+        let scriptType = (this._isNativeSegwit ? EnumOutputScriptType.PAYTOWITNESS : 
+            (coinInfo.segwit ? EnumOutputScriptType.PAYTOP2SHWITNESS : EnumOutputScriptType.PAYTOADDRESS));
+
         tx.outputs.push({
             address_n: changePaths[0].path,
             amount: change.toFixed(0),
-            script_type: (coinInfo.segwit) ? EnumOutputScriptType.PAYTOP2SHWITNESS : EnumOutputScriptType.PAYTOADDRESS,
+            script_type: scriptType,
         });
 
         MyConsole.Info("Generated transaction to be signed", tx);
