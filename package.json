@@ -5,11 +5,15 @@
     "main": "dist/index.js",
     "types": "dist/**.d.ts",
     "description": "This module can be used to communicate with Prokey device",
-    "author": "Prokey Techologies Sdn. Bhd. <info@prokey.io>",
+    "author": "Prokey Technologies Sdn. Bhd. <info@prokey.io>",
     "prepublish": "tsc && cp data/ProkeyCoinsInfo.json dist/data/ProkeyCoinsInfo.json",
     "dependencies": {
         "@types/bytebuffer": "^5.0.40",
+        "assert": "^2.0.0",
+        "bchaddrjs": "^0.5.2",
+        "bech32": "^2.0.0",
         "big-number": "^2.0.0",
+        "bs58check": "^2.1.2",
         "buffer": "^5.4.3",
         "bytebuffer": "^5.0.1",
         "compare-versions": "^3.6.0",
@@ -20,8 +24,7 @@
         "multicoin-address-validator": "^0.4.8",
         "protobufjs": "^6.8.8",
         "rxjs": "~6.2.0",
-        "typescript-http-client": "^0.10.1",
-        "assert": "^2.0.0"
+        "typescript-http-client": "^0.10.1"
     },
     "scripts": {
         "build": "tsc"

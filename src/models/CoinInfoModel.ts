@@ -45,6 +45,9 @@ export interface BitcoinBaseCoinInfoModel {
     test?: boolean,
     tx_url: string,
     bech32_prefix?: string,
+    p2pkh_address_version: number,
+    p2sh_address_version: number,
+    cashaddr_prefix?: string,
 };
 
 export interface EthereumBaseCoinInfoModel {
