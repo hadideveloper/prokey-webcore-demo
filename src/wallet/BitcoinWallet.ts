@@ -151,7 +151,7 @@ export class BitcoinWallet extends BaseWallet {
 
         do {
             // Makinging a list of paths
-            let paths = PathUtil.GetListOfBipPath(coinInfo.slip44, accountNumber, 20, coinInfo.segwit, true, startIndex);
+            let paths = PathUtil.GetListOfBipPath(coinInfo.slip44, accountNumber, 20, coinInfo.segwit, true, startIndex, this._isNativeSegwit);
             var justPaths = paths.map(a =>{
                 return a.path;
             });
