@@ -36,7 +36,8 @@ export interface ICoinCommands {
         ProkeyResponses.NEMAddress |
         ProkeyResponses.RippleAddress |
         ProkeyResponses.CardanoAddress |
-        ProkeyResponses.StellarAddress>;
+        ProkeyResponses.StellarAddress |
+        ProkeyResponses.TronAddress>;
 
     GetAddresses(
         device: Device,
@@ -48,7 +49,8 @@ export interface ICoinCommands {
         ProkeyResponses.NEMAddress |
         ProkeyResponses.RippleAddress |
         ProkeyResponses.CardanoAddress |
-        ProkeyResponses.StellarAddress>>;
+        ProkeyResponses.StellarAddress |
+        ProkeyResponses.TronAddress>>;
 
     GetPublicKey(
         device: Device,
@@ -66,6 +68,7 @@ export interface ICoinCommands {
         transaction:BitcoinTx |
                     EthereumTx |
                     RippleTransaction |
+                    ProkeyResponses.TronTransaction |
                     NEMSignTxMessage,
     ): Promise<ProkeyResponses.SignedTx |
         ProkeyResponses.EthereumSignedTx |
@@ -75,6 +78,7 @@ export interface ICoinCommands {
         ProkeyResponses.BinanceSignTx |
         ProkeyResponses.CardanoSignedTx |
         ProkeyResponses.RippleSignedTx |
+        ProkeyResponses.TronSignedTx |
         ProkeyResponses.NEMSignedTx>;
 
     SignMessage(

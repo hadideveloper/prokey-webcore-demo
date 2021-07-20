@@ -3,6 +3,7 @@
  * Copyright (C) Prokey.io
  * 
  * Hadi Robati, hadi@prokey.io
+ * Ali Akbar Mohammadi
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 export { Device } from './src/device/Device';
 export { BitcoinCommands } from './src/device/BitcoinCommands';
 export { EthereumCommands } from './src/device/EthereumCommands';
+export { TronCommands } from './src/device/TronCommands';
 export { BitcoinWallet } from './src/wallet/BitcoinWallet';
 export { EthereumWallet } from './src/wallet/EthereumWallet';
 export { OmniWallet } from './src/wallet/OmniWallet';

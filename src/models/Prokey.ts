@@ -1039,3 +1039,23 @@ export type LoadDeviceFlags = {
     skip_checksum?: boolean,
     u2f_counter?: number,
 }
+
+// TRON types
+export type TronAddress = {
+    address: string,
+}
+export type TronTransaction = {
+    address_n: Array<number>;
+    timestamp: number;
+    expiration?: number;
+    block_id: string;
+    contract: {
+        transfer_contract?: {
+            to_address: string;
+            amount: number;
+        }
+    }
+}
+export type TronSignedTx = {
+    serialized_tx: string,
+}
