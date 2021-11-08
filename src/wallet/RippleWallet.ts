@@ -22,7 +22,7 @@ import { Device } from "../device/Device";
 import { RippleCoinInfoModel } from "../models/CoinInfoModel";
 import { BaseWallet } from "./BaseWallet";
 import * as PathUtil from '../utils/pathUtils';
-import { RippleAddress, RippleSignedTx, RippleTransaction } from "../models/Prokey";
+import { AddressModel, RippleAddress, RippleSignedTx, RippleTransaction } from "../models/Prokey";
 import {ProkeyRippleBlockchain} from "../blockchain/servers/prokey/src/ripple/ProkeyRippleBlockChain";
 var WAValidator = require('multicoin-address-validator');
 
@@ -42,16 +42,22 @@ export class RippleWallet extends BaseWallet {
         return WAValidator.validate(address, "xrp");
     }
 
-    public async StartDiscovery(
-        accountFindCallBack?: (accountInfo: RippleAccountInfo) => void
-    ): Promise<Array<RippleAccountInfo>>
-    {
+    public async StartDiscovery( accountFindCallBack?: (accountInfo: RippleAccountInfo) => void ): Promise<Array<RippleAccountInfo>> {
         return new Promise<Array<RippleAccountInfo>>(async (resolve, reject) => {
             let an = 0;
             this._accounts = new Array<RippleAccountInfo>();
             do
             {
                 let account = await this.GetAccountInfo(an);
+
+                let tmpAcc = await this.GetAccountInfo2(an);
+                if(tmpAcc != null){
+                    this._accounts.push(tmpAcc);
+                    if(accountFindCallBack){
+                        accountFindCallBack(tmpAcc);
+                    }
+                }
+
                 if (account == null)
                 {
                     // there is nothing here
@@ -73,6 +79,36 @@ export class RippleWallet extends BaseWallet {
             accountNumber,
             super.GetCoinInfo()
         )
+        
+        let address = await this.GetAddress<RippleAddress>(path.path, false);
+
+        //! Save address
+        path.address = address.address;
+
+        //! Getting address(account) info. from blockchain
+        let addressInfo = await this._block_chain.GetAddressInfo({address: address.address});
+        
+        //! Add AddressModel
+        if(addressInfo != null){
+            addressInfo.addressModel = path;
+        } 
+
+        return addressInfo;
+    }
+
+    // Get ripple account info from blockchain
+    private async GetAccountInfo2(accountNumber: number): Promise<RippleAccountInfo | null> {
+        let path: AddressModel = 
+        {
+            address: "",
+            path: [
+                0x80000000 + 44,
+                0x80000000 + 144,
+                0x80000000 + accountNumber,
+                0,
+                1
+            ]
+        };
         
         let address = await this.GetAddress<RippleAddress>(path.path, false);
 
