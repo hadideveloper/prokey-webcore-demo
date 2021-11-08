@@ -24,6 +24,7 @@ import { BaseWallet } from "./BaseWallet";
 import * as PathUtil from '../utils/pathUtils';
 import { AddressModel, RippleAddress, RippleSignedTx, RippleTransaction } from "../models/Prokey";
 import {ProkeyRippleBlockchain} from "../blockchain/servers/prokey/src/ripple/ProkeyRippleBlockChain";
+import { MyConsole } from "../utils/console";
 var WAValidator = require('multicoin-address-validator');
 
 export class RippleWallet extends BaseWallet {
@@ -85,6 +86,8 @@ export class RippleWallet extends BaseWallet {
         //! Save address
         path.address = address.address;
 
+        MyConsole.Info("Ripple Account Add:", path);
+
         //! Getting address(account) info. from blockchain
         let addressInfo = await this._block_chain.GetAddressInfo({address: address.address});
         
@@ -114,6 +117,8 @@ export class RippleWallet extends BaseWallet {
 
         //! Save address
         path.address = address.address;
+
+        MyConsole.Info("Ripple Account Add:", path);
 
         //! Getting address(account) info. from blockchain
         let addressInfo = await this._block_chain.GetAddressInfo({address: address.address});
