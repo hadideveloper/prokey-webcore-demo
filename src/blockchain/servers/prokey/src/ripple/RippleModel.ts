@@ -37,7 +37,7 @@ export interface RippleAccountInfo
     Flags: number,
     index: string,
 
-    addressModel?: AddressModel,
+    addressModel: AddressModel,
 }
 
 export interface RippleTransactionInfo

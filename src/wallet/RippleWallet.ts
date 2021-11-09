@@ -163,14 +163,10 @@ export class RippleWallet extends BaseWallet {
         if (bal < 0)
             throw new Error("Insufficient balance you need to hold 20 XRP in your account.");
 
-        let path = PathUtil.GetBipPath(
-            CoinBaseType.Ripple,
-            accountNumber,
-            ci
-        )
+        
             
         let tx: RippleTransaction = {
-            address_n: path.path,
+            address_n: this._accounts[accountNumber].addressModel.path,
             fee: +selectedFee,
             sequence: this._accounts[accountNumber].Sequence,
             payment: {
