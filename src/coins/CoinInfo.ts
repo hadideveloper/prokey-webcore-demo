@@ -28,6 +28,14 @@ import {
   NemCoinInfoModel,
 } from "../models/CoinInfoModel";
 
+export type CoinInfoModel = BitcoinBaseCoinInfoModel |
+    EthereumBaseCoinInfoModel |
+    Erc20BaseCoinInfoModel |
+    MiscCoinInfoModel |
+    OmniCoinInfoModel |
+    RippleCoinInfoModel |
+    NemCoinInfoModel;
+
  import * as EthereumNetworks from "../utils/ethereum-networks";
 
 const compareVersions = require('compare-versions');
@@ -161,21 +169,9 @@ export class CoinInfo {
      * Returning the sorted list of all coins
      * @param firmwareVersion Specific Version of Prokey which support this coin
      */
-     public static GetAllCoinsInfoByVersion(firmwareVersion: string): Array< BitcoinBaseCoinInfoModel |
-                                                                        EthereumBaseCoinInfoModel |
-                                                                        Erc20BaseCoinInfoModel |
-                                                                        MiscCoinInfoModel |
-                                                                        OmniCoinInfoModel |
-                                                                        RippleCoinInfoModel |
-                                                                        NemCoinInfoModel> {
+     public static GetAllCoinsInfoByVersion(firmwareVersion: string): Array<CoinInfoModel> {
 
-        let list = new Array<BitcoinBaseCoinInfoModel |
-                                EthereumBaseCoinInfoModel |
-                                Erc20BaseCoinInfoModel |
-                                MiscCoinInfoModel |
-                                OmniCoinInfoModel |
-                                RippleCoinInfoModel |
-                                NemCoinInfoModel>();
+        let list = new Array<CoinInfoModel>();
 
         //! For all bitcoin base coins
         ProkeyCoinInfoModel.bitcoin.forEach(coin => {
