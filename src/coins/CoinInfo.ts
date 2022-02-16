@@ -22,7 +22,6 @@ import {
   BitcoinBaseCoinInfoModel,
   EthereumBaseCoinInfoModel,
   Erc20BaseCoinInfoModel,
-  MiscCoinInfoModel,
   OmniCoinInfoModel,
   RippleCoinInfoModel,
   NemCoinInfoModel,
@@ -31,7 +30,6 @@ import {
 export type CoinInfoModel = BitcoinBaseCoinInfoModel |
     EthereumBaseCoinInfoModel |
     Erc20BaseCoinInfoModel |
-    MiscCoinInfoModel |
     OmniCoinInfoModel |
     RippleCoinInfoModel |
     NemCoinInfoModel;

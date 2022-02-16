@@ -37,6 +37,8 @@ export interface BaseCoinInfoModel {
     test?: boolean,
     decimals: number,
     slip44: number,
+    tx_url: string,
+    priority: number,
 
     //! Dynamic properties, Not in json file
     coinBaseType: CoinBaseType,
@@ -72,9 +74,8 @@ export interface BitcoinBaseCoinInfoModel extends BaseCoinInfoModel {
     decimals: number,
     on_device: string,
 
-    tx_url: string,
     timestamp: boolean,
-    priority: number,
+    
 
 };
 
@@ -85,8 +86,6 @@ export interface EthereumBaseCoinInfoModel extends BaseCoinInfoModel {
     shortcut: string,
     url: string,
     on_device?: string,
-    tx_url: string,
-    priority: number,
 }
 
 export interface Erc20BaseCoinInfoModel extends BaseCoinInfoModel{
@@ -94,24 +93,10 @@ export interface Erc20BaseCoinInfoModel extends BaseCoinInfoModel{
     type: string
     address: string,
     on_device?: string,
-    tx_url: string,
-    priority: number,
     ens_address?: string,
     website?: string,
 }
 
-export interface MiscCoinInfoModel extends BaseCoinInfoModel {
-    type: 'misc' | 'nem';
-    blocktime: number;
-    curve: string;
-    min_fee: number;
-    max_fee: number;
-    label: string;
-    decimals: number;
-    on_device: string,
-    tx_url: string,
-    priority: number,
-}
 
 export interface OmniCoinInfoModel extends BaseCoinInfoModel {
     blockchain: string,
@@ -120,21 +105,15 @@ export interface OmniCoinInfoModel extends BaseCoinInfoModel {
     proparty_id: number,
     on_device: string,
     dust_limit: number,
-    tx_url: string,
     timestamp: boolean,
-    priority: number,
 }
 
 export interface RippleCoinInfoModel extends BaseCoinInfoModel {
     on_device: string,
     test?: boolean,
-    tx_url: string,
-    priority: number,
     min_balance: number,
 }
 
 export interface NemCoinInfoModel extends BaseCoinInfoModel {
   on_device: string,
-  tx_url: string,
-  priority: number,
 }
