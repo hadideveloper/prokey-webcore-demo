@@ -1054,6 +1054,10 @@ export type TronFreezeBalance = {
   resource: TronResourceCode; // Freeze the balance to get bandwidth or energy
   receiver_address?: string; // (Optional)Energy or bandwidth receiver address
 };
+export type TronUnfreezeBalance = {
+  resource: TronResourceCode; // Unfreeze the bandwidth or energy
+  receiver_address: string; // (Optional)Energy or bandwidth receiver address
+};
 export type TronTransaction = {
   address_n: Array<number>;
   timestamp: number; // UTC
