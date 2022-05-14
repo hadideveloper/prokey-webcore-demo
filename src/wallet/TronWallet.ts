@@ -25,6 +25,7 @@ import * as PathUtil from "../utils/pathUtils";
 import { TronSignedTx, TronTransaction } from "../models/Prokey";
 import { TronBlockchain } from "../blockchain/servers/prokey/src/tron/TronBlockchain";
 import {
+  TronAccountResources,
   TronAccountInfo,
   TronBlock,
   TronTransactionDataInfo,
@@ -77,6 +78,11 @@ export class TronWallet extends BaseWallet {
   ): Promise<TronAccountInfo | null> {
     throw Error("Not Implemented"); //todo
   }
+
+  // Get account resources the address must be in HEX format
+  public async GetAccountResources(account: string): Promise<TronAccountResources | null> {
+    return await this._block_chain.GetAccountResources(account);
+}
 
   public async GetAccountTransactions(
     account: string
