@@ -25,6 +25,7 @@ import {
   MiscCoinInfoModel,
   OmniCoinInfoModel,
   RippleCoinInfoModel,
+  TronCoinInfoModel,
   NemCoinInfoModel,
 } from "../models/CoinInfoModel";
 
@@ -96,6 +97,9 @@ export class CoinInfo {
             case CoinBaseType.NEM:
                 c = ProkeyCoinInfoModel.NEM;
                 break;
+            case CoinBaseType.Tron:
+                c = ProkeyCoinInfoModel.tron;
+                break;
         }
 
         let f = coinName.toLowerCase();
@@ -142,6 +146,10 @@ export class CoinInfo {
 
                 ci.id = `nem_${ci.shortcut}`;
                 break;
+            case CoinBaseType.Tron:
+                ci = c.find(obj => obj.name.toLowerCase() == f || obj.shortcut.toLowerCase() == f);
+
+                ci.id = `nem_${ci.shortcut}`;
             default:
                 ci = c.find(obj => obj.name.toLowerCase() == f || obj.shortcut.toLowerCase() == f);
 
@@ -245,6 +253,18 @@ export class CoinInfo {
                     ...nem,
                     coinBaseType: CoinBaseType.NEM,
                     id: `nem_${nem.shortcut}`,
+                })
+            }
+        });
+
+        //! For all Tron base coins
+        ProkeyCoinInfoModel.tron.forEach(tron => {
+            //! Check the version
+            if(compareVersions(firmwareVersion, tron.support.optimum) >= 0) {
+                list.push({
+                    ...tron,
+                    coinBaseType: CoinBaseType.Tron,
+                    id: `tron_${tron.shortcut}`,
                 })
             }
         });
