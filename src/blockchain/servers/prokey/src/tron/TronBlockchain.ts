@@ -76,6 +76,18 @@ export class TronBlockchain extends ProkeyBaseBlockChain {
       if (r.freeNetUsed == undefined) {
         r.freeNetUsed = 0;
       }
+      if (r.EnergyLimit == undefined) {
+        r.EnergyLimit = 0;
+      }
+      if (r.EnergyUsed == undefined) {
+        r.EnergyUsed = 0;
+      }
+      if (r.tronPowerLimit == undefined) {
+        r.tronPowerLimit = 0;
+      }
+      if (r.tronPowerUsed == undefined) {
+        r.tronPowerUsed = 0;
+      }
       return r;
     } catch (error) {
       MyConsole.Error("Tron get account resources error: ", error);

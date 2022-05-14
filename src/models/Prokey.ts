@@ -1042,20 +1042,32 @@ export type LoadDeviceFlags = {
 
 // TRON types
 export type TronAddress = {
-    address: string,
+  address: string;
+};
+export enum TronResourceCode {
+  BANDWIDTH = 0x00,
+  ENERGY = 0x01,
 }
+export type TronFreezeBalance = {
+  frozen_balance: number; // Amount to freeze
+  frozen_duration?: number; // (Optional)Freeze minimal duration in days currently 3 days is fixed on tron network
+  resource: TronResourceCode; // Freeze the balance to get bandwidth or energy
+  receiver_address?: string; // (Optional)Energy or bandwidth receiver address
+};
 export type TronTransaction = {
-    address_n: Array<number>;
-    timestamp: number;
-    expiration?: number;
-    block_id: string;
-    contract: {
-        transfer_contract?: {
-            to_address: string;
-            amount: number;
-        }
-    }
-}
+  address_n: Array<number>;
+  timestamp: number; // UTC
+  expiration?: number;
+  block_id: string; // Now Block ID
+  fee_limit?: number; // Max fee in TRX when calling contract address
+  contract: {
+    transfer_contract?: {
+      to_address: string;
+      amount: number; // TRX amount in SUN (10^-6)
+    };
+    freeze_balance_contract?: TronFreezeBalance; // Freeze TRX balance
+  };
+};
 export type TronSignedTx = {
-    serialized_tx: string,
-}
+  serialized_tx: string;
+};

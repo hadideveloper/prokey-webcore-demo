@@ -22,7 +22,11 @@ import { CoinBaseType } from "../coins/CoinInfo";
 import { Device } from "../device/Device";
 import { BaseWallet } from "./BaseWallet";
 import * as PathUtil from "../utils/pathUtils";
-import { TronSignedTx, TronTransaction } from "../models/Prokey";
+import {
+  TronFreezeBalance,
+  TronSignedTx,
+  TronTransaction,
+} from "../models/Prokey";
 import { TronBlockchain } from "../blockchain/servers/prokey/src/tron/TronBlockchain";
 import {
   TronAccountResources,
@@ -80,9 +84,11 @@ export class TronWallet extends BaseWallet {
   }
 
   // Get account resources the address must be in HEX format
-  public async GetAccountResources(account: string): Promise<TronAccountResources | null> {
+  public async GetAccountResources(
+    account: string
+  ): Promise<TronAccountResources | null> {
     return await this._block_chain.GetAccountResources(account);
-}
+  }
 
   public async GetAccountTransactions(
     account: string
@@ -134,6 +140,21 @@ export class TronWallet extends BaseWallet {
         },
       },
     };
+    return tx;
+  }
+
+  public async GenerateFreezeBalanceTransaction(
+    data: TronFreezeBalance,
+    accountNumber: number
+  ): Promise<TronTransaction> {
+    let tx = await this.GenerateTransaction(
+      "test",
+      data.frozen_balance,
+      accountNumber
+    );
+    tx.contract.transfer_contract = undefined;
+    tx.contract.freeze_balance_contract = data;
+    data.frozen_balance = Math.floor(data.frozen_balance) * 1000000;
     return tx;
   }
 
