@@ -68,6 +68,7 @@ import { BitcoinTx } from '../models/BitcoinTx';
 import { EthereumTx } from '../models/EthereumTx';
 import { RippleCommands } from "../device/RippleCommands";
 import { RippleSignedTx, RippleTransaction } from "../models/Responses-V6";
+import { DemoDevice } from './../DemoDevice';
 
 /**
  * This is the base class for all implemented wallets

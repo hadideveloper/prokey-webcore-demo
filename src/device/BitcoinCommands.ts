@@ -30,6 +30,7 @@ import { MyConsole } from '../utils/console';
 import { BitcoinBaseCoinInfoModel, OmniCoinInfoModel } from '../models/CoinInfoModel'
 import { CoinInfo, CoinBaseType } from '../coins/CoinInfo';
 import BigNumber from 'bignumber.js';
+import { DemoDevice } from './../DemoDevice';
 
 export class BitcoinCommands implements ICoinCommands {
     _bitcoinTx!: BitcoinTx;
@@ -62,11 +63,7 @@ export class BitcoinCommands implements ICoinCommands {
      */
     public async GetAddress(device: Device,
         path: Array<number> | string,
-        showOnProkey?: boolean): Promise<ProkeyResponses.AddressModel> {
-
-        if (device == null || path == null) {
-            return Promise.reject({ success: false, errorCode: GeneralErrors.INVALID_PARAM });
-        }
+        showOnProkey?: boolean): Promise<ProkeyResponses.AddressModel> {        
 
         let showDisplay = (showOnProkey == null) ? true : showOnProkey;
 
@@ -84,19 +81,14 @@ export class BitcoinCommands implements ICoinCommands {
             address_n = path;
         }
 
-        const scriptType = PathUtil.GetScriptType(address_n);
-
-        let param = {
-            address_n: address_n,
-            coin_name: this._coinInfo.on_device || this._coinInfo.name || 'Bitcoin',
-            show_display: showDisplay,
-            script_type: scriptType,
+        let addr = DemoDevice.GetAddress(address_n);
+        
+        if(showOnProkey){
+            alert(addr.address);           
         }
 
-        let res = await device.SendMessage<ProkeyResponses.AddressModel>('GetAddress', param, 'Address');
-
         return {
-            address: res.address,
+            address: addr.address,
             path: address_n,
         };
     }
@@ -179,10 +171,6 @@ export class BitcoinCommands implements ICoinCommands {
         path: Array<number> | string,
         showOnProkey?: boolean): Promise<ProkeyResponses.PublicKey> {
 
-        if (device == null || path == null) {
-            return Promise.reject({ success: false, errorCode: GeneralErrors.INVALID_PARAM });
-        }
-
         let showDisplay = (showOnProkey == null) ? true : showOnProkey;
 
         // convert path to array of num
@@ -210,8 +198,11 @@ export class BitcoinCommands implements ICoinCommands {
             show_display: showDisplay,
             script_type: scriptType,
         }
-
-        return await device.SendMessage<ProkeyResponses.PublicKey>('GetPublicKey', param, 'PublicKey');
+         // Real Device
+        //! return await device.SendMessage<ProkeyResponses.PublicKey>('GetPublicKey', param, 'PublicKey'); 
+        
+         // Demo Device        
+        return DemoDevice.GetPubkey(address_n);
     }
     
     /**
