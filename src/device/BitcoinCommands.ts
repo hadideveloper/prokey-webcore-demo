@@ -213,25 +213,10 @@ export class BitcoinCommands implements ICoinCommands {
     public async SignTransaction(device: Device, bitcoinTransaction: BitcoinTx): Promise<ProkeyResponses.SignedTx> {
 
         console.log("SignTransaction", bitcoinTransaction);
-        if(!device) {
-            let e: GeneralResponse = {
-                success: false,
-                errorCode: GeneralErrors.INVALID_PARAM,
-                errorMessage: "BitcoinCommands::SignTransaction->parameter Device cannot be null",
-            }
 
-            throw e;
-        }
-
-        if(!bitcoinTransaction) {
-            let e: GeneralResponse = {
-                success: false,
-                errorCode: GeneralErrors.INVALID_PARAM,
-                errorMessage: "BitcoinCommands::SignTransaction->parameter bitcoinTransaction cannot be null",
-            }
-            
-            throw e;
-        }
+        //Demo device message and address
+        let signDemoMessage: string="";
+        let demoAddress:string;
 
         // reject if already in signing
         if(this._isSigning) {
@@ -249,23 +234,7 @@ export class BitcoinCommands implements ICoinCommands {
 
         return new Promise<ProkeyResponses.SignedTx>(async (resolve, reject) => {
 
-            this._isSigning = true;
-
-            this._failedSignHandler = (reason: any) => {
-                // "this" can be null if the user after signing a transaction, change the coin 
-                if(this != undefined)
-                    this._isSigning = false;
-
-                device.RemoveOnFailureCallBack(this._failedSignHandler);
-
-                /*let e: GeneralResponse = {
-                    success: false,
-                    errorCode: GeneralErrors.SIGNING_FAILED,
-                    errorMessage: `BitcoinCommands::SignTransaction->${reason}`,
-                }*/
-
-                reject(`Signing transaction failed: ${reason.message}`);
-            };
+            this._isSigning = true;           
 
             // Validate the parameters
             try {
@@ -374,6 +343,11 @@ export class BitcoinCommands implements ICoinCommands {
                     //     }
                     //     throw e;
                     // }
+                    //Object.prototype.hasOwnProperty.call(output, 'address_n')
+
+                    if (Object.prototype.hasOwnProperty.call(output, 'address')) {
+                       demoAddress = output["address"];
+                    }
                 }
 
                 
@@ -387,6 +361,7 @@ export class BitcoinCommands implements ICoinCommands {
 
                     throw e;
                 }
+                signDemoMessage += `${totalOutputAmount} to ${demoAddress}\n`;
 
             }
             catch (ex) {
@@ -424,9 +399,20 @@ export class BitcoinCommands implements ICoinCommands {
             MyConsole.Info(param);
         
             try{
-                device.AddOnFailureCallBack(this._failedSignHandler);
-                let txReq = await device.SendMessage<ProkeyResponses.TxRequest>('SignTx', param, 'TxRequest');
-                await this.TxReqHandler(device, dicRefTx, txReq, resolve, reject);
+                //Real Device
+                //device.AddOnFailureCallBack(this._failedSignHandler);
+                //let txReq = await device.SendMessage<ProkeyResponses.TxRequest>('SignTx', param, 'TxRequest');
+                //await this.TxReqHandler(device, dicRefTx, txReq, resolve, reject);
+
+                //Demo Device
+                alert(signDemoMessage);
+                resolve({
+                    serialized_tx: "serialized_tx",//Utility.DecimalStrigArrayToHexString(this._serializedTx, ','),
+                    signatures: ["sig1"]//this._signatures,
+                });
+
+                return { success: true };
+
             }catch(e){
                 this._isSigning = false;
                 reject(e);

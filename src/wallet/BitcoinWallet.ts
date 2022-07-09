@@ -631,7 +631,16 @@ export class BitcoinWallet extends BaseWallet {
      * @param txData Signed Transaction to be sent to the network
      */
     public async SendTransaction(txData: string): Promise<GenericWalletModel.GenericSentTransactionResult>{
-        return await this._bitcoinBlockchain.BroadCastTransaction(txData);
+        //Real Wallet
+        //return await this._bitcoinBlockchain.BroadCastTransaction(txData);
+
+        //Demo Wallet
+        let txResult: GenericWalletModel.GenericSentTransactionResult ={
+            isSuccess: true,
+            txid: "8e0d9c4cc2510b5a4eefe09a2a456cb947290bdeebeace6835942de661d03b28"
+        };
+        return txResult;
+
     }
 
     public async UpdateAccountUtxos(acc: WalletModel.BitcoinAccountInfo) {
