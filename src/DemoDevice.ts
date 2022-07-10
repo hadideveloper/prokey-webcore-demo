@@ -1,9 +1,19 @@
 import * as ProkeyResponses from './models/Prokey';
 import * as PathUtil from './utils/pathUtils';
-import { AddressModel, HDPubNode } from './models/Prokey';
+import { AddressModel, EthereumAddress, HDPubNode } from './models/Prokey';
 
 const DemoPubkeys = require("./../data/DemoPubkeys.json");
 const DemoAddresses = require("./../data/DemoAddresses.json");
+
+enum DemoCoins {
+    bitcoin,
+    ethereum
+};
+let CoinCodeToName = {
+    "0'": DemoCoins.bitcoin,
+    "60'": DemoCoins.ethereum    
+};
+
 
 export class DemoDevice{
 
@@ -25,7 +35,7 @@ export class DemoDevice{
 
     public static GetPubkey(path: Array<number> | string){
 
-        let[pathArray, pathStr] = this.GetPathAsTuple(path);
+        let[pathArray, pathStr] = this.GetPathAsTuple(path);        
         let xPubKey = DemoPubkeys[pathStr] as string;
 
         let pubNode:HDPubNode = {
@@ -44,16 +54,38 @@ export class DemoDevice{
 
     }
 
-    public static GetAddress(path: Array<number> | string)
+    // return AddressModel | EthereumAddress | LiskAddress | NEMAddress | RippleAddress | CardanoAddress | StellarAddress
+    public static GetAddress(path: Array<number> | string):
+    AddressModel | EthereumAddress
     {
         let[pathArray, pathStr] = this.GetPathAsTuple(path);
         let addr = DemoAddresses[pathStr] as string;
 
-        let addressModel:AddressModel = {
-            address: addr,
-            path: pathArray
-        };
-        return addressModel;
+        let coin = CoinCodeToName[pathStr.split("/")[1]];
+        switch(coin){
+            case DemoCoins.bitcoin:
+                let btcAddressModel:AddressModel = {
+                    address: addr,
+                    path: pathArray
+                };
+                return btcAddressModel;
+            case DemoCoins.ethereum:
+                let ethAddressModel:EthereumAddress = {
+                    address: addr
+                };
+                return ethAddressModel;
+            break;
+            default:
+                let addressModel:AddressModel = {
+                    address: addr,
+                    path: pathArray
+                };
+                return addressModel;
+            
+        }
+
+        
+       
     }
 
 }

@@ -29,6 +29,7 @@ import { EthereumTx, EthTxToProkey } from '../models/EthereumTx';
 import { validateParams } from '../utils/paramsValidator';
 import { Erc20BaseCoinInfoModel, EthereumBaseCoinInfoModel } from '../models/CoinInfoModel';
 import { CoinInfo, CoinBaseType } from '../coins/CoinInfo';
+import { DemoDevice } from '../DemoDevice';
 
 export class EthereumCommands implements ICoinCommands {
 
@@ -44,11 +45,7 @@ export class EthereumCommands implements ICoinCommands {
      * @param path BIP path 
      * @param showOnProkey true means show the address on device display
      */
-    public async GetAddress(device: Device, path: Array<number>, showOnProkey?: boolean): Promise<ProkeyResponses.EthereumAddress> {
-
-        if (device == null || path == null) {
-            return Promise.reject({ success: false, errorCode: GeneralErrors.INVALID_PARAM });
-        }
+    public async GetAddress(device: Device, path: Array<number>, showOnProkey?: boolean): Promise<ProkeyResponses.EthereumAddress> {      
 
         let showDisplay = (showOnProkey == null) ? true : showOnProkey;
 
@@ -65,13 +62,17 @@ export class EthereumCommands implements ICoinCommands {
         } else {
             address_n = path;
         }
+        
+        //Real Device
+        //let address = await device.SendMessage<ProkeyResponses.EthereumAddress>('EthereumGetAddress', param, 'EthereumAddress');
 
-        let param = {
-            address_n: address_n,
-            show_display: showDisplay,
+        //Demo Device
+        let address = DemoDevice.GetAddress(address_n);
+        
+        if(showOnProkey){
+            alert(address.address);           
         }
 
-        let address = await device.SendMessage<ProkeyResponses.EthereumAddress>('EthereumGetAddress', param, 'EthereumAddress');
         //! Add 0x prefix to be backward compatible
         if(address.address.startsWith("0x") == false) {
             address.address = "0x" + address.address;
@@ -160,7 +161,8 @@ export class EthereumCommands implements ICoinCommands {
             show_display: showDisplay,
         }
 
-        return await device.SendMessage<ProkeyResponses.PublicKey>('EthereumGetPublicKey', param, 'EthereumPublicKey');
+        let pubkey =  await device.SendMessage<ProkeyResponses.PublicKey>('EthereumGetPublicKey', param, 'EthereumPublicKey');
+        return pubkey;
     }
 
     /**

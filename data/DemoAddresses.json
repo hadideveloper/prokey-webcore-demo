@@ -81,6 +81,13 @@
     "44'/0'/1'/0/18": "377t2SzC4LzapwtUxKiygA6S4pnSfXht7S",
     "49'/0'/1'/0/18": "377t2SzC4LzapwtUxKiygA6S4pnSfXht7S",
     "44'/0'/1'/0/19": "3FjNfq2VmRGVTq6D3NzaBrjt9Ceaa16Miy",
-    "49'/0'/1'/0/19": "3FjNfq2VmRGVTq6D3NzaBrjt9Ceaa16Miy"
+    "49'/0'/1'/0/19": "3FjNfq2VmRGVTq6D3NzaBrjt9Ceaa16Miy",
+
+    "44'/60'/0'_Comment": "Ethereum_Acount0_Addresses",
+    "44'/60'/0'/0/0": "0x6eb6052e8f14fdc19d0a5d697b26d2ffb88345c6",
+    "49'/60'/0'/0/0": "0x6eb6052e8f14fdc19d0a5d697b26d2ffb88345c6",
+    "44'/60'/0'/0/1": "0x24e62f585035DE005857F4B80CF936DeE5Ae2621",
+    "49'/60'/0'/0/1": "0x24e62f585035DE005857F4B80CF936DeE5Ae2621"
+
 
 }
