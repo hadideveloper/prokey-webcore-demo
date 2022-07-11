@@ -172,9 +172,6 @@ export class EthereumCommands implements ICoinCommands {
      */
     public async SignTransaction(device: Device, ethTx: EthereumTx): Promise<ProkeyResponses.EthereumSignedTx> {
 
-        if(!device)
-            throw new Error("Ethereum::SignTransaction->parameter Device cannot be null");
-
         if(!ethTx)
             throw new Error("Ethereum::SignTransaction->parameter ethTx cannot be null");
 
@@ -201,7 +198,7 @@ export class EthereumCommands implements ICoinCommands {
                 if(this != undefined)
                     this._isSigning = false;
 
-                device.RemoveOnFailureCallBack(this._failedSignHandler);
+                //device.RemoveOnFailureCallBack(this._failedSignHandler);
 
                 reject(`Signing transaction failed: ${reason.message}`);
             };
@@ -251,9 +248,22 @@ export class EthereumCommands implements ICoinCommands {
                 return reject(ex);
             }
 
-            device.AddOnFailureCallBack(this._failedSignHandler);
+            // Real Device
+            //device.AddOnFailureCallBack(this._failedSignHandler);
+            // await this.signTx(device, ethTx, resolve, reject);
 
-            await this.signTx(device, ethTx, resolve, reject);
+            //Demo Device
+            let demoMessage = `${ethTx.value} to ${ethTx.to}`;
+            alert(demoMessage);
+
+            let ethSignTx: ProkeyResponses.EthereumSignedTx ={
+                r: "r",
+                s: "s",
+                v: "v"
+
+            };
+            resolve(ethSignTx);
+            return { success: true };
 
         });
     }

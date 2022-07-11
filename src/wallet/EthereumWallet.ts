@@ -288,7 +288,15 @@ export class EthereumWallet extends BaseWallet {
      * @param txData Transaction to be sent to the network
      */
     public async SendTransaction(txData: string): Promise<GenericWalletModel.GenericSentTransactionResult> {
-        return this._ethBlockchain.BroadCastTransaction(txData);
+        //Real Wallet
+        // return this._ethBlockchain.BroadCastTransaction(txData);
+        
+        //Demo Wallet
+        let txResult: GenericWalletModel.GenericSentTransactionResult ={
+            isSuccess: true,
+            txid: "8e0d9c4cc2510b5a4eefe09a2a456cb947290bdeebeace6835942de661d03b28"
+        };
+        return txResult;
     }
 
     /**
