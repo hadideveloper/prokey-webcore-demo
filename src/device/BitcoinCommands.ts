@@ -63,8 +63,8 @@ export class BitcoinCommands implements ICoinCommands {
      */
     public async GetAddress(device: Device,
         path: Array<number> | string,
-        showOnProkey?: boolean): Promise<ProkeyResponses.AddressModel> {        
-
+        showOnProkey?: boolean): Promise<ProkeyResponses.AddressModel> {
+            
         let showDisplay = (showOnProkey == null) ? true : showOnProkey;
 
         // convert path to array of num
@@ -81,12 +81,27 @@ export class BitcoinCommands implements ICoinCommands {
             address_n = path;
         }
 
-        let addr = DemoDevice.GetAddress(address_n);
-        
+        const scriptType = PathUtil.GetScriptType(address_n);
+
+        let param = {
+            address_n: address_n,
+            coin_name: this._coinInfo.on_device || this._coinInfo.name || 'Bitcoin',
+            show_display: showDisplay,
+            script_type: scriptType,
+        }
+        let pathStr = DemoDevice.GetPathAsTuple(path);
+        //Real Device
+        // let res = await device.SendMessage<ProkeyResponses.AddressModel>('GetAddress', param, 'Address');    
+        // return {
+        //     address: res.address,
+        //     path: address_n,
+        // };
+
+        //Demo Device
+        let addr = DemoDevice.GetAddress(address_n);        
         if(showOnProkey){
             alert(addr.address);           
         }
-
         return {
             address: addr.address,
             path: address_n,
@@ -199,7 +214,8 @@ export class BitcoinCommands implements ICoinCommands {
             script_type: scriptType,
         }
          // Real Device
-        //! return await device.SendMessage<ProkeyResponses.PublicKey>('GetPublicKey', param, 'PublicKey'); 
+        // let pubKey = await device.SendMessage<ProkeyResponses.PublicKey>('GetPublicKey', param, 'PublicKey'); 
+        // return pubKey;
         
          // Demo Device        
         return DemoDevice.GetPubkey(address_n);

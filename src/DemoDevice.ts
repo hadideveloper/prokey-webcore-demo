@@ -69,12 +69,13 @@ export class DemoDevice{
                     path: pathArray
                 };
                 return btcAddressModel;
+
             case DemoCoins.ethereum:
                 let ethAddressModel:EthereumAddress = {
                     address: addr
                 };
-                return ethAddressModel;
-            break;
+                return ethAddressModel;  
+                          
             default:
                 let addressModel:AddressModel = {
                     address: addr,
