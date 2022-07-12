@@ -25,12 +25,13 @@
     "49'/5'/0'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
     "/5'/1'_Comment": "Dash_PublicKey_1",
     "44'/5'/1'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
-    "49'/5'/1'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q"
+    "49'/5'/1'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
 
-
-
-
-
-
+    "/20'/0'_Comment": "Digibyte_PublicKey_0",
+    "44'/20'/0'": "ypub6YL6QjkUeGXqgMDgNVL92eeGxCcDT1b7kN559SkmGYLgthjHRfD3w3rebmzLZiMuj7KHgkQjmXNw3wpyW8iDPP39WaR3ALjyjEjJsvBppUj",
+    "49'/20'/0'": "ypub6YL6QjkUeGXqgMDgNVL92eeGxCcDT1b7kN559SkmGYLgthjHRfD3w3rebmzLZiMuj7KHgkQjmXNw3wpyW8iDPP39WaR3ALjyjEjJsvBppUj",
+    "/20'/1'_Comment": "Digibyte_PublicKey_1",
+    "44'/20'/1'": "ypub6YL6QjkUeGXqgMDgNVL92eeGxCcDT1b7kN559SkmGYLgthjHRfD3w3rebmzLZiMuj7KHgkQjmXNw3wpyW8iDPP39WaR3ALjyjEjJsvBppUj",
+    "49'/20'/1'": "ypub6YL6QjkUeGXqgMDgNVL92eeGxCcDT1b7kN559SkmGYLgthjHRfD3w3rebmzLZiMuj7KHgkQjmXNw3wpyW8iDPP39WaR3ALjyjEjJsvBppUj"
 
 }
