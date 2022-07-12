@@ -18,7 +18,15 @@
     "49'/3'/0'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L",
     "/3'/1'_Comment": "Dogecoin_PublicKey_1",
     "44'/3'/1'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L",
-    "49'/3'/1'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L"
+    "49'/3'/1'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L",
+
+    "/5'/0'_Comment": "Dash_PublicKey_0",
+    "44'/5'/0'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
+    "49'/5'/0'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
+    "/5'/1'_Comment": "Dash_PublicKey_1",
+    "44'/5'/1'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q",
+    "49'/5'/1'": "drkpS1HkUEpHfhJPrSFQJjVqfF7RyfmJTd6UtZJxML4uPfo8Bypewk4vr2b5meDk8PqMectHP19x7gNgGsDEqXsUaoyNe9EvVeMWNPVsART6S1Q"
+
 
 
 
