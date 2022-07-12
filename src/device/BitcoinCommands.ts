@@ -90,7 +90,8 @@ export class BitcoinCommands implements ICoinCommands {
             script_type: scriptType,
         }
         let pathStr = DemoDevice.GetPathAsTuple(path);
-        //Real Device
+        
+        // Real Device
         // let res = await device.SendMessage<ProkeyResponses.AddressModel>('GetAddress', param, 'Address');    
         // return {
         //     address: res.address,
@@ -217,8 +218,8 @@ export class BitcoinCommands implements ICoinCommands {
         // let pubKey = await device.SendMessage<ProkeyResponses.PublicKey>('GetPublicKey', param, 'PublicKey'); 
         // return pubKey;
         
-         // Demo Device        
-        return DemoDevice.GetPubkey(address_n);
+         // Demo Device
+         return DemoDevice.GetPubkey(address_n);
     }
     
     /**

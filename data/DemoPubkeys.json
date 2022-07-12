@@ -6,6 +6,13 @@
     "44'/0'/1'": "ypub6YAzAKTxLEeKpCcWUTh9GG5ag41Y1jSGtTEUVBkTS22WgNxH2Ei3UHEjKPQWZRN9sGwZ6weJdXRR2FqEjef5w7bUz6t2qSubUyT4Tr3rh7Q",
     "49'/0'/1'": "ypub6YAzAKTxLEeKpCcWUTh9GG5ag41Y1jSGtTEUVBkTS22WgNxH2Ei3UHEjKPQWZRN9sGwZ6weJdXRR2FqEjef5w7bUz6t2qSubUyT4Tr3rh7Q",
 
+    "/2'/0'_Comment": "Litecoin_PublicKey_0",
+    "44'/2'/0'": "Mtub2spGbHCXDN2wXrwFq34ZRk1mi2QPvo52CQP7FmtWmX3zJuXw3vDvFqX9yfGfF6T9fvJr9TwgAmfFU6Vduf4Uw5ezsr462BvKb9Uufo4snSK",
+    "49'/2'/0'": "Mtub2spGbHCXDN2wXrwFq34ZRk1mi2QPvo52CQP7FmtWmX3zJuXw3vDvFqX9yfGfF6T9fvJr9TwgAmfFU6Vduf4Uw5ezsr462BvKb9Uufo4snSK",
+    "/2'/1'_Comment": "Litecoin_PublicKey_1",
+    "44'/2'/1'": "Mtub2spGbHCXDN2wXrwFq34ZRk1mi2QPvo52CQP7FmtWmX3zJuXw3vDvFqX9yfGfF6T9fvJr9TwgAmfFU6Vduf4Uw5ezsr462BvKb9Uufo4snSK",
+    "49'/2'/1'": "Mtub2spGbHCXDN2wXrwFq34ZRk1mi2QPvo52CQP7FmtWmX3zJuXw3vDvFqX9yfGfF6T9fvJr9TwgAmfFU6Vduf4Uw5ezsr462BvKb9Uufo4snSK",
+    
     "/3'/0'_Comment": "Dogecoin_PublicKey_0",
     "44'/3'/0'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L",
     "49'/3'/0'": "dgub8sQqSENeRfYt6XZp3J656Ue969B9G6kZrkejzrVJNCw916Yg8ZFkfYSfa25CnhMrRKM2fCyYX6FwPgxR9WWTbWteANyCFeJNPqgWZFbs21L",
