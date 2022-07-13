@@ -39,7 +39,16 @@
     "49'/28'/0'": "ypub6XJYZz4T3vMA9UXuu9J5i367yVSdSW3xau8ZCtjeRdGSuS4yWteRzezgKE2B2eC6q5xJrSZ9hNd8bxLDVyaEpP4qhkt7xFyTakA5JuDQQTi",
     "/28'/1'_Comment": "Vertcoin_PublicKey_1",
     "44'/28'/1'": "ypub6XJYZz4T3vMA9UXuu9J5i367yVSdSW3xau8ZCtjeRdGSuS4yWteRzezgKE2B2eC6q5xJrSZ9hNd8bxLDVyaEpP4qhkt7xFyTakA5JuDQQTi",
-    "49'/28'/1'": "ypub6XJYZz4T3vMA9UXuu9J5i367yVSdSW3xau8ZCtjeRdGSuS4yWteRzezgKE2B2eC6q5xJrSZ9hNd8bxLDVyaEpP4qhkt7xFyTakA5JuDQQTi"
+    "49'/28'/1'": "ypub6XJYZz4T3vMA9UXuu9J5i367yVSdSW3xau8ZCtjeRdGSuS4yWteRzezgKE2B2eC6q5xJrSZ9hNd8bxLDVyaEpP4qhkt7xFyTakA5JuDQQTi",
+
+    "/133'/0'_Comment": "ZCach_PublicKey_0",
+    "44'/133'/0'": "xpub6CMupgKgHnNWNHy2UV5JQczEkngvTUPbNM9XE3uvw8G2Ycfjovabq31qkr5mMkJ1YbfuUAN2DLPKvfJffH13kEUAeXoruwGPCsrWHoTi9G9",
+    "49'/133'/0'": "xpub6CMupgKgHnNWNHy2UV5JQczEkngvTUPbNM9XE3uvw8G2Ycfjovabq31qkr5mMkJ1YbfuUAN2DLPKvfJffH13kEUAeXoruwGPCsrWHoTi9G9",
+    "/133'/1'_Comment": "Vertcoin_PublicKey_1",
+    "44'/133'/1'": "xpub6CMupgKgHnNWNHy2UV5JQczEkngvTUPbNM9XE3uvw8G2Ycfjovabq31qkr5mMkJ1YbfuUAN2DLPKvfJffH13kEUAeXoruwGPCsrWHoTi9G9",
+    "49'/133'/1'": "xpub6CMupgKgHnNWNHy2UV5JQczEkngvTUPbNM9XE3uvw8G2Ycfjovabq31qkr5mMkJ1YbfuUAN2DLPKvfJffH13kEUAeXoruwGPCsrWHoTi9G9"
+
+
 
 
 
