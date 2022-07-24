@@ -100,9 +100,6 @@ export class BitcoinCommands implements ICoinCommands {
 
         //Demo Device
         let addr = DemoDevice.GetAddress(address_n);        
-        if(showOnProkey){
-            alert(addr.address);           
-        }
         return {
             address: addr.address,
             path: address_n,
