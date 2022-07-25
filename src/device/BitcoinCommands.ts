@@ -418,8 +418,7 @@ export class BitcoinCommands implements ICoinCommands {
                 //let txReq = await device.SendMessage<ProkeyResponses.TxRequest>('SignTx', param, 'TxRequest');
                 //await this.TxReqHandler(device, dicRefTx, txReq, resolve, reject);
 
-                //Demo Device
-                alert(signDemoMessage);
+                //Demo Device                
                 resolve({
                     serialized_tx: "serialized_tx",//Utility.DecimalStrigArrayToHexString(this._serializedTx, ','),
                     signatures: ["sig1"]//this._signatures,

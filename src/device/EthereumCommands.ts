@@ -67,11 +67,7 @@ export class EthereumCommands implements ICoinCommands {
         //let address = await device.SendMessage<ProkeyResponses.EthereumAddress>('EthereumGetAddress', param, 'EthereumAddress');
 
         //Demo Device
-        let address = DemoDevice.GetAddress(address_n);
-        
-        if(showOnProkey){
-            alert(address.address);           
-        }
+        let address = DemoDevice.GetAddress(address_n);       
 
         //! Add 0x prefix to be backward compatible
         if(address.address.startsWith("0x") == false) {
@@ -252,10 +248,7 @@ export class EthereumCommands implements ICoinCommands {
             //device.AddOnFailureCallBack(this._failedSignHandler);
             // await this.signTx(device, ethTx, resolve, reject);
 
-            //Demo Device
-            let demoMessage = `${ethTx.value} to ${ethTx.to}`;
-            alert(demoMessage);
-
+            //Demo Device            
             let ethSignTx: ProkeyResponses.EthereumSignedTx ={
                 r: "r",
                 s: "s",
