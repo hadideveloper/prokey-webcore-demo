@@ -448,16 +448,25 @@ export class BitcoinCommands implements ICoinCommands {
 
         let scriptType = PathUtil.GetScriptType(address_n);
 
-        let res = await device.SendMessage<ProkeyResponses.MessageSignature>('SignMessage', {
-            address_n: address_n,
-            message: message,
-            coin_name: coin || 'Bitcoin',
-            script_type: scriptType,
-        },'MessageSignature');
+        //Real Device
+        // let res = await device.SendMessage<ProkeyResponses.MessageSignature>('SignMessage', {
+        //     address_n: address_n,
+        //     message: message,
+        //     coin_name: coin || 'Bitcoin',
+        //     script_type: scriptType,
+        // },'MessageSignature');
 
-        if(res.signature){
-            res.signature = Utility.ByteArrayToHexString(res.signature);
-        }
+        // if(res.signature){
+        //     res.signature = Utility.ByteArrayToHexString(res.signature);
+        // }
+
+        // DDDDDDDDDDDDDD EEEEEEEEEEE MMMMMMMMMMMM OOOOOOOOOO
+        // ##################### DEMO #######################
+        let res: ProkeyResponses.MessageSignature ={
+            address: "address",
+            signature:"23a1a8db4c10cb4844118ff6aa9e49f59d1f245b46f6e6f7ac2a4b4f547ec3649159fa0e7c0baeca7906a1de0e238607bb69d7f6492943140df2b7d8c796374dfa"
+        } 
+        //############ end of DEMO change ###################
 
         return res;
     }
