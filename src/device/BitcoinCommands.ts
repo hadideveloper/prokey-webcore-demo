@@ -486,12 +486,18 @@ export class BitcoinCommands implements ICoinCommands {
         signature: Uint8Array,
         coinName: string): Promise<ProkeyResponses.Success> {
 
-        return await device.SendMessage<ProkeyResponses.Success>('VerifyMessage', {
-            address: address,
-            signature: signature,
-            message: message,
-            coin_name: coinName || 'Bitcoin',
-        } ,'Success');
+        //Real Device
+        // return await device.SendMessage<ProkeyResponses.Success>('VerifyMessage', {
+        //     address: address,
+        //     signature: signature,
+        //     message: message,
+        //     coin_name: coinName || 'Bitcoin',
+        // } ,'Success');
+
+        let res:ProkeyResponses.Success ={
+            message:"Message verified"
+        } 
+        return res;
     }
 
     // **********************************
