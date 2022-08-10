@@ -268,14 +268,24 @@ export class EthereumCommands implements ICoinCommands {
      * @param message message to be signed
      */
     public async SignMessage(device: Device, path: Array<number>, message: Uint8Array, coinName?: string): Promise<ProkeyResponses.MessageSignature> {
-        let res = await device.SendMessage<ProkeyResponses.MessageSignature>('EthereumSignMessage', {
-            address_n: path,
-            message: message,
-        }, 'EthereumMessageSignature');
 
-        if(res.signature){
-            res.signature = Util.ByteArrayToHexString(res.signature);
-        }
+        // DDDDDDDDDDDDDD EEEEEEEEEEE MMMMMMMMMMMM OOOOOOOOOO
+        // ##################### DEMO #######################
+        //Real Device
+        // let res = await device.SendMessage<ProkeyResponses.MessageSignature>('EthereumSignMessage', {
+        //     address_n: path,
+        //     message: message,
+        // }, 'EthereumMessageSignature');
+
+        // if(res.signature){
+        //     res.signature = Util.ByteArrayToHexString(res.signature);
+        // }
+
+        let res: ProkeyResponses.MessageSignature ={
+            address: "address",
+            signature:"23a1a8db4c10cb4844118ff6aa9e49f59d1f245b46f6e6f7ac2a4b4f547ec3649159fa0e7c0baeca7906a1de0e238607bb69d7f6492943140df2b7d8c796374dfa"
+        } 
+        //############ end of DEMO change ###################
 
         return res;
     }
@@ -294,11 +304,20 @@ export class EthereumCommands implements ICoinCommands {
         message: Uint8Array,
         signature: Uint8Array): Promise<ProkeyResponses.Success> {
 
-        return await device.SendMessage<ProkeyResponses.Success>('EthereumVerifyMessage', {
-            address: address,
-            signature: signature,
-            message: message,
-        },'Success');
+        // DDDDDDDDDDDDDD EEEEEEEEEEE MMMMMMMMMMMM OOOOOOOOOO
+        // ##################### DEMO #######################
+        //Real Device
+        // return await device.SendMessage<ProkeyResponses.Success>('EthereumVerifyMessage', {
+        //     address: address,
+        //     signature: signature,
+        //     message: message,
+        // },'Success');
+
+        let res:ProkeyResponses.Success ={
+            message:"Message verified"
+        } 
+        return res;
+        //############ end of DEMO change ###################
     }
 
     // **********************************
